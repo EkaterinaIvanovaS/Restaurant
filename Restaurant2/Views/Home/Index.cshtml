@@ -1,0 +1,27 @@
+﻿@using Dal.DbModels
+@model List<Category>
+
+@{
+    ViewData["Title"] = "Меню";
+}
+
+<div class="text-center">
+    <img src="/img/Img1.png" class="start-page" />
+</div>
+
+<div class="container">
+    <div class="menu-categories__row">
+        @foreach (var item in Model)
+            {
+                <div class="menu-categories__item">
+                    <div class="menu-categories__item_content" style="background-image:url(/wwwroot/img/backgroundMenuCategories.jpg)">
+                        <div class="menu-categories__item_title">
+                            <a href="@Url.Action("Menu", "Menu", new {categoryId = item.Id})">@item.Name</a>
+                        </div>
+                    </div>
+                @* 1 - метод, 2 - контроллер *@
+                </div>
+
+            }
+    </div>
+</div>

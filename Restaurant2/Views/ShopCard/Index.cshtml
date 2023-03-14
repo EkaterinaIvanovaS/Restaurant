@@ -1,0 +1,12 @@
+﻿@using Restaurant2.Views.Models
+@model ShopCardViewModel
+<div class="container">
+	@foreach(var elem in Model.shopCard.shopCardItems){
+		<div class="alert alert-warning mt-3">
+			<b>Продукт:</b> @elem.product.ToString()<br/>
+			<b>Цена:</b> @elem.product.Price.ToString()<br/>
+		</div>
+	}
+	<hr/>
+	<div class="btn btn-danger" asp-controller="Order">Оплатить</div>
+</div>

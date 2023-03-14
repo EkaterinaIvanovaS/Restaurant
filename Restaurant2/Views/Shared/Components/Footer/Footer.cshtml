@@ -1,0 +1,42 @@
+﻿@using Dal.DbModels
+@model List<Category>
+
+<footer class="border-top footer text-muted">
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <div class="footer-logo">
+                <img src = "/img/logo.png"/>
+            </div>
+            <div class="footer-menu">
+                <div class="main-menu">
+                    <ul>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Меню</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Info">О нас</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Stocks">Акции</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Delivery">Доставка</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="main-menu">
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Menu", "Menu", new {categoryId = item.Id})">@item.Name</a>
+                            @* 1 - метод, 2 - контроллер *@
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
