@@ -13,5 +13,6 @@ namespace Dal.DbModels
         public double? Price { get; set; }
 
         public virtual Category Category { get; set; }
+        public List<OrderToProduct> orderToProducts { get; set; }
     }
 }

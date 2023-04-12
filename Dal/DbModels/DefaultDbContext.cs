@@ -19,8 +19,10 @@ namespace Dal.DbModels
 
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ShopCard> ShopCards { get; set; }
         public virtual DbSet<ShopCardItem> ShopCardItems { get; set; }
+        public virtual DbSet<Order> Orders{get; set; }
+        public virtual DbSet<OrderToProduct> OrdersToProducts { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -61,18 +63,11 @@ namespace Dal.DbModels
                     .HasConstraintName("FK__Products__Catego__3B75D760");
             });
 
-            modelBuilder.Entity<ShopCard>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(300)
-                    .HasColumnName("id");
-            });
-
             modelBuilder.Entity<ShopCardItem>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.Property(e => e.IdProduct).HasColumnName("id_Product");
+                entity.Property(e => e.ProductId).HasColumnName("id_Product");//IdProduct!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 entity.Property(e => e.IdShopCard)
                     .HasMaxLength(300)
@@ -84,14 +79,19 @@ namespace Dal.DbModels
 
                 entity.HasOne(d => d.IdProductNavigation)
                     .WithMany()
-                    .HasForeignKey(d => d.IdProduct)
+                    .HasForeignKey(d => d.ProductId)//IdProduct!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ShopCardI__id_Pr__2F9A1060");
+            });
 
-                entity.HasOne(d => d.IdShopCardNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdShopCard)
-                    .HasConstraintName("FK__ShopCardI__id_Sh__308E3499");
+            modelBuilder.Entity<OrderToProduct>(entity =>
+            {
+                entity.HasOne(d => d.Product)
+                    .WithMany(d => d.orderToProducts)
+                    .HasForeignKey(d => d.productId);
+                entity.HasOne(d => d.Order)
+                    .WithMany(d => d.orderToProducts)
+                    .HasForeignKey(d => d.orderId);
             });
 
             OnModelCreatingPartial(modelBuilder);

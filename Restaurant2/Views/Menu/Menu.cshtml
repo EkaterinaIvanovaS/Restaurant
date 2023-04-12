@@ -16,9 +16,23 @@
             <ul>
                 @foreach (var item in Model)
                 {
-                    <li>@item.Name / @item.Price руб.<br></li>
+                    <li>@item.Name / @item.Price руб.<br>
+                        <a href="#" onclick="addItemToCard(@item.Id)">Добавить</a> <br>
+                    </li>
                 }
             </ul>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>    //TODO: изменить на json
+        function addItemToCard(productId) {
+            if (sessionStorage["cartItems"] === undefined) {
+                sessionStorage["cartItems"] = '';
+            }
+            sessionStorage["cartItems"] = sessionStorage["cartItems"].concat(productId+",");
+            alert(sessionStorage["cartItems"]);
+        }
+    </script>
+}

@@ -32,7 +32,7 @@ namespace Restaurant2
             services.AddControllersWithViews();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => ShopCard.GetCard(sp));//У каждого пользователя своя корзина
+            //services.AddScoped(sp => ShopCard.GetCard(sp));//У каждого пользователя своя корзина
             
             services.AddScoped<IAllProducts, MockProducts>();
 
