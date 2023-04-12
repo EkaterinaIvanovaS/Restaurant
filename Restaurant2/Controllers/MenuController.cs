@@ -38,5 +38,26 @@ namespace Restaurant2.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Cart()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public IActionResult GetProducts(string idItems)
+        {
+            if (idItems == null)
+            {
+                return null;
+            }
+            var ids = idItems.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(p => int.Parse(p));
+            using (DefaultDbContext db = new DefaultDbContext())
+            {
+                var products = db.Products.Where(item => ids.Contains(item.Id)).ToList();
+                return Json(products);
+            }
+        }
     }
 }

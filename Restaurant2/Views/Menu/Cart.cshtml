@@ -1,0 +1,28 @@
+﻿<div class="cart">
+	<h1 class="text-center">Корзина</h1>
+	<div class="cart-products container">
+            <ul id="CartItems">
+
+                
+            </ul>
+     </div>
+</div>
+
+@section Scripts{
+    <script>
+        $.ajax({
+            url: '/Menu/GetProducts',
+            method: 'POST',
+            data: {idItems: sessionStorage["cartItems"]},
+            success: function(res){
+                console.log(res);
+                for(var item of res){
+                    $('#CartItems').append(`<li>${item.name}</li>`);
+                }
+            },
+            error: function(){
+                alert("Error!");
+            }
+        });
+    </script>
+}
