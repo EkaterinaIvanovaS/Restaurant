@@ -50,7 +50,7 @@ namespace Restaurant2.Controllers
         }
         public IActionResult Footer()//For footer
         {
-            using (DefaultDbContext db = new DefaultDbContext())
+            using (DefaultDbContext db = new DefaultDbContext())//Рассказать!
             {
                 // получаем объекты из бд и выводим на консоль
                 var categories = db.Categories.ToList();

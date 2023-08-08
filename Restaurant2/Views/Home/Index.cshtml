@@ -1,5 +1,8 @@
 ﻿@using Dal.DbModels
 @model List<Category>
+@{
+    var imageUrls = new List<string> { "/img/menu-pizza.png", "/img/menu-rolls.png", "/img/menu-salads.png", "/img/menu-desserts.png" };
+}
 
 @{
     ViewData["Title"] = "Меню";
@@ -11,17 +14,24 @@
 
 <div class="container">
     <div class="menu-categories__row">
+        @{
+            int i = 0;
+        }
         @foreach (var item in Model)
             {
                 <div class="menu-categories__item">
-                    <div class="menu-categories__item_content" style="background-image:url(/wwwroot/img/backgroundMenuCategories.jpg)">
+                    <div class="menu-categories__item_content" style="background-image:url(@imageUrls[i])">
                         <div class="menu-categories__item_title">
                             <a href="@Url.Action("Menu", "Menu", new {categoryId = item.Id})">@item.Name</a>
                         </div>
                     </div>
                 @* 1 - метод, 2 - контроллер *@
-                </div>
-
-            }
+            </div>
+            i++;   
+        }
     </div>
+</div>
+
+<div class="container" style="position: relative; width: 100%; height: 130px;">
+    <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" src="/img/small-banner.png"/>
 </div>

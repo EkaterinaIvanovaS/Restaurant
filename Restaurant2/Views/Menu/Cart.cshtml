@@ -2,7 +2,6 @@
 	<h1 class="text-center">Корзина</h1>
 	<div class="cart-products container">
             <ul id="CartItems">
-
                 
             </ul>
      </div>
@@ -17,7 +16,7 @@
             success: function(res){
                 console.log(res);
                 for(var item of res){
-                    $('#CartItems').append(`<li>${item.name}</li>`);
+                    $('#CartItems').append(`<li>${item.name}/${item.price}руб.</li>`);
                 }
             },
             error: function(){

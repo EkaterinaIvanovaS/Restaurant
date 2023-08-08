@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
-#nullable disable
-
 namespace Dal.DbModels
 {
     public partial class Category
@@ -11,7 +8,6 @@ namespace Dal.DbModels
         {
             Products = new HashSet<Product>();
         }
-
         public int Id { get; set; }
         public string Name { get; set; }
 

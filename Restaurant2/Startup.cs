@@ -1,17 +1,10 @@
 using Dal.DbModels;
-using Dal.Interfaces;
-using Dal.Mocks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Restaurant2
 {
@@ -34,7 +27,7 @@ namespace Restaurant2
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //services.AddScoped(sp => ShopCard.GetCard(sp));//У каждого пользователя своя корзина
             
-            services.AddScoped<IAllProducts, MockProducts>();
+            //services.AddScoped<IAllProducts, MockProducts>();
 
             services.AddMvc();
 
@@ -55,7 +48,7 @@ namespace Restaurant2
             }
             app.UseStaticFiles();
 
-            app.UseSession();//new elem
+            app.UseSession();
 
             app.UseRouting();
 

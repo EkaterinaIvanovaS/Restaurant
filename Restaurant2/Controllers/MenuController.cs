@@ -59,5 +59,21 @@ namespace Restaurant2.Controllers
                 return Json(products);
             }
         }
+
+        //public IActionResult GetCountProducts(string idItems)
+        //{
+        //    if (idItems == null)
+        //    {
+        //        return null;
+        //    }
+        //    var ids = idItems.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(p => int.Parse(p));
+        //    using (DefaultDbContext db = new DefaultDbContext())
+        //    {
+        //        var products = db.Products.Where(item => ids.Contains(item.Id)).ToList();
+        //        var IdsCount = db.Products.Where(x => x.Id == 1).Count();
+
+        //        return Json(products);
+        //    }
+        //}
     }
 }

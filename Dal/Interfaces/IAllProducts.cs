@@ -11,6 +11,7 @@ namespace Dal.Interfaces
     {
         IEnumerable<Product> Products { get; }
         IEnumerable<Product> getFavProducts { get; set; }
+
         Product getObjectProduct(int productId);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
@@ -67,7 +66,7 @@ namespace Dal.DbModels
             {
                 entity.HasNoKey();
 
-                entity.Property(e => e.ProductId).HasColumnName("id_Product");//IdProduct!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                entity.Property(e => e.ProductId).HasColumnName("id_Product");
 
                 entity.Property(e => e.IdShopCard)
                     .HasMaxLength(300)
@@ -79,7 +78,7 @@ namespace Dal.DbModels
 
                 entity.HasOne(d => d.IdProductNavigation)
                     .WithMany()
-                    .HasForeignKey(d => d.ProductId)//IdProduct!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ShopCardI__id_Pr__2F9A1060");
             });
